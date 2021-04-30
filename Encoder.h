@@ -378,6 +378,21 @@ private:
 	// or other context to the attached function.
 	static uint8_t attach_interrupt(uint8_t pin, Encoder_internal_state_t *state) {
 		switch (pin) {
+
+		#ifdef PC_INT10_PIN
+			case PC_INT10_PIN:
+				interruptArgs[0] = state;
+				attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(pin), isr0, CHANGE);
+				break;
+		#endif
+
+		#ifdef PC_INT11_PIN
+			case PC_INT11_PIN:
+				interruptArgs[1] = state;
+				attachPinChangeInterrupt(digitalPinToPinChangeInterrupt(pin), isr1, CHANGE);
+				break;
+		#endif	
+		
 		#ifdef CORE_INT0_PIN
 			case CORE_INT0_PIN:
 				interruptArgs[0] = state;

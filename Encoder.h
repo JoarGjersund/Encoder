@@ -763,10 +763,10 @@ private:
 
 
 #if defined(ENCODER_USE_INTERRUPTS) && !defined(ENCODER_OPTIMIZE_INTERRUPTS)
-	#ifdef CORE_INT0_PIN
+	#ifdef CORE_INT0_PIN || PC_INT10_PIN
 	static void isr0(void) { update(interruptArgs[0]); }
 	#endif
-	#ifdef CORE_INT1_PIN
+	#ifdef CORE_INT1_PIN || PC_INT11_PIN
 	static void isr1(void) { update(interruptArgs[1]); }
 	#endif
 	#ifdef CORE_INT2_PIN
